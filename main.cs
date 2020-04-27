@@ -5,10 +5,8 @@ using System.IO;
 using System.Diagnostics;
 
 
-
 class MainClass 
 {
-  public static List<studentas> studentai = new List<studentas>();
   public static List<studentas> vargsiukai = new List<studentas>();
   public static List<studentas> galvociai = new List<studentas>();
   public static void Main (string[] args) 
@@ -49,7 +47,6 @@ class MainClass
           } 
 
           studentas laik = new studentas(vardas, pavarde, rezEgz, balai);
-          studentai.Add(laik);
           if (laik.galutinis < 5)
           {
             vargsiukai.Add(laik);
@@ -58,7 +55,6 @@ class MainClass
           {
             galvociai.Add(laik);
           }
-          studentai = studentai.OrderBy(o=>o.vardas).ToList();
           galvociai = galvociai.OrderBy(o=>o.vardas).ToList();
           vargsiukai = vargsiukai.OrderBy(o=>o.vardas).ToList();
           stopwatch.Stop();
@@ -98,7 +94,6 @@ class MainClass
               balai.Add(double.Parse(whitesp[i]));
             } 
             studentas laik = new studentas(vardas, pavarde, rezEgz, balai);
-            studentai.Add(laik);
             if (laik.galutinis < 5)
             {
               vargsiukai.Add(laik);
@@ -107,12 +102,10 @@ class MainClass
             {
               galvociai.Add(laik);
             }
-            studentai = studentai.OrderBy(o=>o.vardas).ToList();
             galvociai = galvociai.OrderBy(o=>o.vardas).ToList();
             vargsiukai = vargsiukai.OrderBy(o=>o.vardas).ToList();
           } 
           Console.WriteLine("Dokumentas užkrautas");
-          studentai = studentai.OrderBy(o=>o.vardas).ToList();
           stopwatch.Stop();
           Console.WriteLine("Praejo tiek laiko: {0}", stopwatch.Elapsed);
           stopwatch = new Stopwatch();
@@ -129,7 +122,11 @@ class MainClass
           stopwatch.Start();          
           Console.WriteLine("{0} {1, 10} {2, 10} {3, 10}", "Pavarde", "Vardas", "Galutinis (vid.)", "Galutinis (med.)");
           Console.WriteLine("-----------------------------------------------------");
-          foreach (var value in studentai)
+          foreach (var value in galvociai)
+          {
+          Console.WriteLine("{0} {1, 10} {2, 10} {3, 10}", value.pavarde, value.vardas, value.galutinis.ToString("0.00"), value.galutinisMed.ToString("0.00"));
+          }
+          foreach (var value in vargsiukai)
           {
           Console.WriteLine("{0} {1, 10} {2, 10} {3, 10}", value.pavarde, value.vardas, value.galutinis.ToString("0.00"), value.galutinisMed.ToString("0.00"));
           }

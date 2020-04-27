@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
-
-
+using System.Linq;
+using System.IO; 
+using System.Diagnostics;
 
 
 class studentas 
@@ -12,10 +13,10 @@ class studentas
   public double galutinis {get; set;}
   public double galutinisMed {get; set;}
 
-  public List<double> balai = new List<double>();
+  public LinkedList<double> balai = new LinkedList<double>();
   public double vid {get; set;} = 0;
 
-  public studentas (string vardas, string pavarde, double rezEgz, List<double> balai)
+  public studentas (string vardas, string pavarde, double rezEgz, LinkedList<double> balai)
   {
     this.vardas = vardas;
     this.pavarde = pavarde;
@@ -28,9 +29,6 @@ class studentas
     this.vid = this.vid / this.balai.Count;
     this.galutinis = this.vid * 0.3 + this.rezEgz * 0.7;
     
-    this.balai.Sort();
-    this.galutinisMed = this.balai[this.balai.Count / 2] * 0.3 + this.rezEgz * 0.7;
+    this.galutinisMed = this.balai.ToList()[this.balai.ToList().Count / 2] * 0.3 + this.rezEgz * 0.7;
   }
-
-
 }

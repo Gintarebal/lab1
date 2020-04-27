@@ -8,9 +8,9 @@ using System.Diagnostics;
 
 class MainClass 
 {
-  public static List<studentas> studentai = new List<studentas>();
-  public static List<studentas> vargsiukai = new List<studentas>();
-  public static List<studentas> galvociai = new List<studentas>();
+  public static LinkedList<studentas> studentai = new LinkedList<studentas>();
+  public static LinkedList<studentas> vargsiukai = new LinkedList<studentas>();
+  public static LinkedList<studentas> galvociai = new LinkedList<studentas>();
   public static void Main (string[] args) 
   { 
     meniu();
@@ -42,25 +42,22 @@ class MainClass
           string vardas = whitesp[0];
           string pavarde = whitesp[1]; 
           double rezEgz = double.Parse(whitesp.Last());
-          List<double> balai = new List<double>();
+          LinkedList<double> balai = new LinkedList<double>();
           for (int i = 2; i < whitesp.Length - 1; i++)
           {
-            balai.Add(double.Parse(whitesp[i]));
+            balai.AddLast(double.Parse(whitesp[i]));
           } 
 
           studentas laik = new studentas(vardas, pavarde, rezEgz, balai);
-          studentai.Add(laik);
+          studentai.AddLast(laik);
           if (laik.galutinis < 5)
           {
-            vargsiukai.Add(laik);
+            vargsiukai.AddLast(laik);
           }
           if (laik.galutinis >= 5)
           {
-            galvociai.Add(laik);
+            galvociai.AddLast(laik);
           }
-          studentai = studentai.OrderBy(o=>o.vardas).ToList();
-          galvociai = galvociai.OrderBy(o=>o.vardas).ToList();
-          vargsiukai = vargsiukai.OrderBy(o=>o.vardas).ToList();
           stopwatch.Stop();
           Console.WriteLine("Praejo tiek laiko: {0}", stopwatch.Elapsed);
           stopwatch = new Stopwatch();
@@ -92,27 +89,23 @@ class MainClass
             string vardas = whitesp[0];
             string pavarde = whitesp[1]; 
             double rezEgz = double.Parse(whitesp.Last());
-            List<double> balai = new List<double>();
+            LinkedList<double> balai = new LinkedList<double>();
             for (int i = 2; i < whitesp.Length - 1; i++)
             {
-              balai.Add(double.Parse(whitesp[i]));
+              balai.AddLast(double.Parse(whitesp[i]));
             } 
             studentas laik = new studentas(vardas, pavarde, rezEgz, balai);
-            studentai.Add(laik);
+            studentai.AddLast(laik);
             if (laik.galutinis < 5)
             {
-              vargsiukai.Add(laik);
+              vargsiukai.AddLast(laik);
             }
             if (laik.galutinis >= 5)
             {
-              galvociai.Add(laik);
+              galvociai.AddLast(laik);
             }
-            studentai = studentai.OrderBy(o=>o.vardas).ToList();
-            galvociai = galvociai.OrderBy(o=>o.vardas).ToList();
-            vargsiukai = vargsiukai.OrderBy(o=>o.vardas).ToList();
           } 
           Console.WriteLine("Dokumentas užkrautas");
-          studentai = studentai.OrderBy(o=>o.vardas).ToList();
           stopwatch.Stop();
           Console.WriteLine("Praejo tiek laiko: {0}", stopwatch.Elapsed);
           stopwatch = new Stopwatch();
